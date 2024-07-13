@@ -14,7 +14,7 @@
     color: white;
     padding: 14px 20px;
     cursor: pointer;
-    position: fixed;
+    position: center;
 }
 
 .loginPopup {
