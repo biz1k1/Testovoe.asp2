@@ -43,6 +43,21 @@ namespace Web.Services
             };
 
             return model;
+        } 
+        public async Task<RecordsViewModel> GetRecordByname(string name)
+        {
+            var recordsDTO=await _mediator.Send(new GetRecordByNameQuery(name));
+
+
+			var recordViewModel = _mapper.Map<RecordModel>(recordsDTO);
+
+            var list = new List<RecordModel>() { recordViewModel };
+			var model = new RecordsViewModel()
+            {
+                ListRecords = list
+            };
+
+            return model;
         }
 
 

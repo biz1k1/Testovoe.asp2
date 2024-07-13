@@ -21,6 +21,12 @@ namespace Web.Controllers
             var records = await _recordService.GetAllRecords();
             return View("/Views/Home/Index.cshtml", records);
         }
+        public async Task<IActionResult> GetRecordByName(string name)
+        {
+            var record = await _recordService.GetRecordByname(name);
+
+            return View("/Views/Home/Index.cshtml", record);
+        }
 
 		[HttpPost]
 		public async Task<IActionResult> CreateRecord(RegistrationModel registrationModel)

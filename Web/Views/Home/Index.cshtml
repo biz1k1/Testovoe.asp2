@@ -25,8 +25,6 @@
 		}
 	</div>
 
-
-
 	<div class="openBtn">
 		<button class="openButton" onclick="openForm()"><strong>Регистрация</strong></button>
 	</div>
@@ -51,6 +49,8 @@
 			</form>
 		</div>
 	</div>
+
+
 
 
     <div style="margin-top:150px">
@@ -79,6 +79,16 @@
 			</tbody>
 		</table>
     </div>
+
+
+
+	<div>
+	<form asp-action="GetRecordByName" asp-controller="Record" class="formContainer">
+		<label asp-for="Registration.Name">Поиск</label>
+		<input asp-for="Registration.Name" type="text" name="Name" required />
+		<button type="submit" class="btn">Поиск</button>
+	</form>
+	<div>
 
 	<script>
 		function openForm() {

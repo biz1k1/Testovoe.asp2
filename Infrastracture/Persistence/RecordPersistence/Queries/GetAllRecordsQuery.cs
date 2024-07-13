@@ -22,7 +22,7 @@ namespace Infrastracture.Persistence.RecordPersistence.Queries
             public async Task<List<RecordDTO>> Handle(GetAllRecordsQuery request, CancellationToken cancellationToken)
             {
 
-                var records= await _dataContext.Record.AsNoTracking().ToListAsync();
+                var records= await _dataContext.Record.AsNoTracking().OrderByDescending(x=>x.DateCreation).ToListAsync();
 
                 var recordResponse=_mapper.Map<List<RecordDTO>>(records);
                 return recordResponse;

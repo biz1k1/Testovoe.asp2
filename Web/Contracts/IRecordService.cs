@@ -6,6 +6,8 @@ namespace Web.Contracts
     public interface IRecordService
     {
         Task<Guid> CreateRecord(RegistrationModel recordModel);
-       Task<RecordsViewModel> GetAllRecords();
-    }
+        Task<RecordsViewModel> GetAllRecords();
+        Task<RecordsViewModel> GetRecordByname(string name);
+
+	}
 }
