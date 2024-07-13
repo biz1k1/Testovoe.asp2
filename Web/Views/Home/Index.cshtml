@@ -1,0 +1,92 @@
+﻿@model RecordsViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+	<link rel="stylesheet" type="text/css" href="~/css/password.css">
+	<link rel="stylesheet" type="text/css" href="~/css/popup.css">
+	<link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css">
+</head>
+<body>
+	<div id="error-message">
+
+		@if (TempData.ContainsKey("ErrorMessage"))
+		{
+			<div class="container-fluid">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-5 col-sm-12 col-xs-12">
+						<div class="card p-3 p-md-4" style="text-align:center">
+							<h2>ошибка</h2>
+							<div class="error-message">@TempData["ErrorMessage"]</div>
+						</div>
+					</div>
+				</div>
+				</div>
+		}
+	</div>
+
+
+
+	<div class="openBtn">
+		<button class="openButton" onclick="openForm()"><strong>Регистрация</strong></button>
+	</div>
+	<div class="loginPopup">
+		<div class="formPopup" id="popupForm">
+			<form asp-action="CreateRecord" asp-controller="Record" class="formContainer">
+				<div>
+					<label asp-for="Registration.Name">Название</label>
+					<input asp-for="Registration.Name" type="text" name="Name" required/>
+				</div>
+				<div>
+					<label asp-for="Registration.Password">Пароль</label>
+					<input asp-for="Registration.Password" type="text" name="Password" required />
+				</div>
+				<div>
+					
+				</div>
+				<button type="submit" class="btn">Регистрация</button>
+				<button type="button" class="btn cancel" onclick="closeForm()">Закрыть</button>
+
+
+			</form>
+		</div>
+	</div>
+
+
+    <div style="margin-top:150px">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Имя</th>
+					<th>Пароль</th>
+					<th>Дата создания</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model != null)
+				{
+					
+				@foreach (var item in Model.ListRecords)
+					{
+						<tr>
+						<td>@Html.DisplayFor(x=>item.Name)</td>
+						<td class="hidden" >@Html.DisplayFor(x => item.Password)</td>
+						<td>@Html.DisplayFor(x => item.DateCreation)</td>
+						</tr>
+					}
+				}
+
+			</tbody>
+		</table>
+    </div>
+
+	<script>
+		function openForm() {
+			document.getElementById("popupForm").style.display = "block";
+		}
+		function closeForm() {
+			document.getElementById("popupForm").style.display = "none";
+		}
+	</script>
+
+</body>
